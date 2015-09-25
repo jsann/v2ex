@@ -1,4 +1,5 @@
 var React = require("react-native");
+var moment = require("moment");
 
 var {
   View,
@@ -18,17 +19,11 @@ module.exports = React.createClass({
             <View key={i} style={styles.item}>
               <Image style={styles.handle} source={{uri: "http:" + v.member.avatar_normal}}></Image>
               <View style={styles.text}>
-                <TouchableHighlight style={styles.highlight} onPress={() => alert(1)}>
-                  <Text>{v.title}</Text>
-                </TouchableHighlight>
+                <Text style={styles.content} onPress={() => alert(1)}>{v.title}</Text>
                 <View style={styles.subInfos}>
-                  <TouchableHighlight style={styles.highlight} onPress={() => alert(1)}>
-                    <Text style={styles.subInfo}>{v.member.username}</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight style={styles.highlight} onPress={() => alert(1)}>
-                    <Text style={styles.subInfo}>{v.node.title}</Text>
-                  </TouchableHighlight>
-                  <Text style={styles.subInfo}>{v.created}</Text>
+                  <Text style={styles.subInfo}>{v.member.username}</Text>
+                  <Text style={styles.subInfo}>{v.node.title}</Text>
+                  <Text style={styles.date}>{moment(v.created).format("YYYY-MM-DD HH:mm:ss")}</Text>
                 </View>
               </View>
             </View>
@@ -44,7 +39,7 @@ var styles = StyleSheet.create({
   item: {
     borderTopWidth: 1,
     padding: 5,
-    borderTopColor: "#ccc",
+    borderTopColor: "rgba(0, 0, 0, .1)",
     flexDirection: "row"
   },
   handle: {
@@ -56,13 +51,25 @@ var styles = StyleSheet.create({
     flex: 5,
     paddingLeft: 10
   },
+  content: {
+    fontSize: 12,
+    height: 30
+  },
   subInfos: {
     flexDirection: "row"
   },
   subInfo: {
     color: "#ccc",
-    marginRight: 10
+    backgroundColor: "#f2f2f2",
+    borderRadius: 5,
+    marginRight: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 3,
+    fontSize: 10
   },
-  highlight: {
+  date: {
+    fontSize: 10,
+    paddingVertical: 3,
+    color: "#ccc"
   }
 })
