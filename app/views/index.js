@@ -1,10 +1,11 @@
 var React = require("react-native");
+var Item = require("./common/item.js");
 var Api = require("../api/api.js");
 
 var {
-  ScrollView,
   View,
-  Image,
+  ScrollView,
+  TabBarIOS,
   Text,
   StyleSheet
 } = React;
@@ -12,11 +13,10 @@ var {
 module.exports = React.createClass({
   getInitialState: function(){
     return {
-      dataSource: []
     }
   },
   fetchList: function(){
-    fetch(Api.getAll()).then(data => data.json()).then(data => {
+    fetch(Api.getAll).then(data => data.json()).then(data => {
       this.setState({
         dataSource: data
       })
@@ -27,35 +27,50 @@ module.exports = React.createClass({
   },
   render: function() {
     return (
-      <ScrollView>
-        {
-          this.state.dataSource && this.state.dataSource.map(function(v, i){
-            return (
-              <View key={i} style={styles.item}>
-                <Image style={styles.handle} source={{uri: "http:" + v.member.avatar_normal}}></Image>
-                <Text style={styles.text}>{v.title}</Text>
-              </View>
-            )
+      <TabBarIOS style={styles.menubar}>
+        <TabBarIOS.Item title="INDEX" selected={true} onPress={() => {
+          this.setState({
+            selectedTab: "index"
           })
-        }
-      </ScrollView>
+        }}>
+          <ScrollView style={styles.content}>
+            {
+              this.state.dataSource ? <Item dataSource={this.state.dataSource}></Item> : <Text style={styles.loading}>Loading...</Text>
+            }
+          </ScrollView>
+        </TabBarIOS.Item>
+        <TabBarIOS.Item title="HOT" onPress={() => {
+          this.setState({
+            selectedTab: "hot"
+          })
+        }}></TabBarIOS.Item>
+        <TabBarIOS.Item title="NODE" onPress={() => {
+          this.setState({
+            selectedTab: "node"
+          })
+        }}></TabBarIOS.Item>
+        <TabBarIOS.Item title="ME" onPress={() => {
+          this.setState({
+            selectedTab: "me"
+          })
+        }}></TabBarIOS.Item>
+      </TabBarIOS>
     )
   }
 })
 
 var styles = StyleSheet.create({
-  item: {
-    borderTopWidth: 1,
-    borderTopColor: "#ccc",
-    flexDirection: "row"
+  content: {
+    paddingLeft: 10,
+    paddingRight: 10
   },
-  handle: {
-    width: 48,
-    height: 48,
-    flex: 1
+  loading: {
+    flex: 1,
+    fontSize: 20,
+    color: "#999",
+    marginTop: 200,
+    textAlign: "center"
   },
-  text: {
-    flex: 3,
-    paddingLeft: 10
+  menubar: {
   }
 })
