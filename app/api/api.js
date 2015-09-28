@@ -1,7 +1,10 @@
-const HOST = "https://www.v2ex.com/api/"
+const HOST = "https://www.v2ex.com"
 
 module.exports = {
 
-  getAll: HOST + "topics/latest.json"
+  getNew: HOST + "/api/topics/latest.json",
+  getHot: HOST + "/api/topics/hot.json",
+  getAllNodes: HOST + "/api/nodes/all.json",
+  getUserInfos: HOST + "/api/members/show.json?id=1"
 
 }

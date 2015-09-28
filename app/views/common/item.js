@@ -21,8 +21,10 @@ module.exports = React.createClass({
               <View style={styles.text}>
                 <Text style={styles.content} onPress={() => alert(1)}>{v.title}</Text>
                 <View style={styles.subInfos}>
+                  <View style={styles.subInfos}>
                   <Text style={styles.subInfo}>{v.member.username}</Text>
                   <Text style={styles.subInfo}>{v.node.title}</Text>
+                  </View>
                   <Text style={styles.date}>{moment(v.created).format("YYYY-MM-DD HH:mm:ss")}</Text>
                 </View>
               </View>
@@ -56,10 +58,11 @@ var styles = StyleSheet.create({
     height: 30
   },
   subInfos: {
-    flexDirection: "row"
+    flexDirection: "row",
+    flex: 3
   },
   subInfo: {
-    color: "#ccc",
+    color: "#999",
     backgroundColor: "#f2f2f2",
     borderRadius: 5,
     marginRight: 10,
@@ -70,6 +73,9 @@ var styles = StyleSheet.create({
   date: {
     fontSize: 10,
     paddingVertical: 3,
-    color: "#ccc"
+    color: "#999",
+    // alignSelf: "flex-end",
+    // alignItems: "flex-end",
+    flex: 2
   }
 })
