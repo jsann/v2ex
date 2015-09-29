@@ -67,7 +67,10 @@ module.exports = React.createClass({
         }}>
           <NavigatorIOS style={styles.container} initialRoute={{
             title: "我的资料",
-            component: UserInfo
+            component: UserInfo,
+            passProps: {
+              uri: Api.getUserInfos
+            }
           }} />
         </TabBarIOS.Item>
       </TabBarIOS>

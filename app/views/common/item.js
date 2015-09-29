@@ -17,7 +17,7 @@ module.exports = React.createClass({
         this.props.dataSource.map(function(v, i){
           return (
             <View key={i} style={styles.item}>
-              <Image style={styles.handle} source={{uri: "http:" + v.member.avatar_normal}}></Image>
+              <Image style={styles.handle} source={{uri: `http:${v.member.avatar_normal}`}}></Image>
               <View style={styles.text}>
                 <Text style={styles.content} onPress={() => alert(1)}>{v.title}</Text>
                 <View style={styles.subInfos}>
