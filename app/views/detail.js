@@ -2,7 +2,8 @@ var React = require("react-native");
 var moment = require("moment");
 
 var Api = require("../api/api.js");
-var Loading = require("./common/loading.js");
+var Comment = require("./common/comment.js");
+var Loading = require("./common/empty.js");
 
 var {
   View,
@@ -28,7 +29,7 @@ module.exports = React.createClass({
   },
   render: function() {
     var details = this.state.details;
-    if(details) details = details[0]
+    if(details) details = details[0];
     return (
       <ScrollView style={styles.content}>
       {
@@ -43,6 +44,7 @@ module.exports = React.createClass({
               <Text style={styles.date}>{moment(details.created).format("YYYY-MM-DD HH:mm:ss")}</Text>
             </View>
             <Text style={styles.detail}>{details.content}</Text>
+            <Comment itemId={this.props.id}></Comment>
           </View>
         ) : <Loading />
       }

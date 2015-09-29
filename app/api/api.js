@@ -6,6 +6,8 @@ module.exports = {
   getHot: HOST + "/api/topics/hot.json",
   getItemDetail: HOST + "/api/topics/show.json",
 
+  getCommentList: HOST + "/api/replies/show.json",
+
   getAllNodes: HOST + "/api/nodes/all.json",
 
   getUserInfos: HOST + "/api/members/show.json"

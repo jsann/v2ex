@@ -1,7 +1,7 @@
 var React = require("react-native");
 
 var Item = require("./common/item.js");
-var Loading = require("./common/loading.js");
+var Loading = require("./common/empty.js");
 
 var {
   ScrollView,

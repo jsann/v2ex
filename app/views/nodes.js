@@ -1,6 +1,6 @@
 var React = require("react-native");
 
-var Loading = require("./common/loading.js");
+var Loading = require("./common/empty.js");
 
 var {
   View,
