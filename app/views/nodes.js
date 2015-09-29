@@ -24,6 +24,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <ScrollView style={styles.content}>
+        <View style={styles.nodes}>
         {
           this.state.allNodes ? (
             this.state.allNodes.map(function(v, i) {
@@ -31,6 +32,7 @@ module.exports = React.createClass({
             })
           ) : <Text style={styles.loading}>Loading...</Text>
         }
+        </View>
       </ScrollView>
     )
   }
@@ -38,8 +40,7 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
   content: {
-    padding: 5,
-    flexWrap: "wrap"
+    padding: 5
   },
   loading: {
     flex: 1,
@@ -48,6 +49,10 @@ var styles = StyleSheet.create({
     marginTop: 200,
     textAlign: "center"
   },
+  nodes: {
+    flexWrap: "wrap",
+    flexDirection: "row"
+  },
   node: {
     color: "#999",
     backgroundColor: "#f2f2f2",
@@ -55,7 +60,6 @@ var styles = StyleSheet.create({
     margin: 5,
     paddingHorizontal: 5,
     paddingVertical: 3,
-    fontSize: 10,
-    flex: 4
+    fontSize: 10
   },
 })
