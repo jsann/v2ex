@@ -1,6 +1,8 @@
 var React = require("react-native");
 var moment = require("moment");
 
+var ItemDetail = require("../detail.js");
+
 var {
   View,
   Image,
@@ -10,20 +12,29 @@ var {
 } = React;
 
 module.exports = React.createClass({
+  toDetail: function(item) {
+    this.props.navigator.push({
+      title: item.title,
+      component: ItemDetail,
+      passProps: {
+        id: item.id
+      }
+    });
+  },
   render: function() {
     return (
       <View>
       {
-        this.props.dataSource.map(function(v, i){
+        this.props.dataSource.map((v, i) => {
           return (
             <View key={i} style={styles.item}>
               <Image style={styles.handle} source={{uri: `http:${v.member.avatar_normal}`}}></Image>
               <View style={styles.text}>
-                <Text style={styles.content} onPress={() => alert(1)}>{v.title}</Text>
+                <Text style={styles.content} onPress={() => this.toDetail(v)}>{v.title}</Text>
                 <View style={styles.subInfos}>
                   <View style={styles.subInfos}>
-                  <Text style={styles.subInfo}>{v.member.username}</Text>
-                  <Text style={styles.subInfo}>{v.node.title}</Text>
+                    <Text style={styles.subInfo}>{v.member.username}</Text>
+                    <Text style={styles.subInfo}>{v.node.title}</Text>
                   </View>
                   <Text style={styles.date}>{moment(v.created).format("YYYY-MM-DD HH:mm:ss")}</Text>
                 </View>
@@ -74,8 +85,6 @@ var styles = StyleSheet.create({
     fontSize: 10,
     paddingVertical: 3,
     color: "#999",
-    // alignSelf: "flex-end",
-    // alignItems: "flex-end",
-    flex: 2
+    alignSelf: "flex-end"
   }
 })
