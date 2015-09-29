@@ -29,7 +29,7 @@ module.exports = React.createClass({
   },
   render: function() {
     var list = this.state.commentList;
-    return list ? _.isEmpty(list) ? <Loading text="暂无评论..." /> : list.map((v, i) => <CommentItem comment={v} key={i}></CommentItem>) : <Loading />
+    return list ? _.isEmpty(list) ? <Loading text="暂无评论..." /> : <View>{list.map((v, i) => <CommentItem comment={v} key={i} index={i} />)}</View> : <Loading />
   }
 })
 

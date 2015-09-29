@@ -17,7 +17,7 @@ module.exports = React.createClass({
         <Text>{comment.created}</Text>
         <Text>{comment.thanks}</Text>
         <Text>{comment.content}</Text>
-        <Text>{this.props.key}</Text>
+        <Text>{this.props.index}</Text>
       </View>
     )
   }
