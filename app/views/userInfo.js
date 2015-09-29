@@ -1,5 +1,7 @@
 var React = require("react-native");
 
+var Loading = require("./common/loading.js");
+
 var {
   View,
   ScrollView,
@@ -39,7 +41,7 @@ module.exports = React.createClass({
               <Text >tag: {info.tagline}</Text>
               <Text >bio: {info.bio}</Text>
             </View>
-          ) : <Text >Loading...</Text>
+          ) : <Loading />
         }
       </ScrollView>
     )

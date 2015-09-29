@@ -1,6 +1,7 @@
 var React = require("react-native");
 
 var Item = require("./common/item.js");
+var Loading = require("./common/loading.js");
 
 var {
   ScrollView,
@@ -18,7 +19,7 @@ module.exports = React.createClass({
       this.setState({
         dataSource: data
       })
-    })
+    }).done();
   },
   componentDidMount: function() {
     this.fetchList()
@@ -27,7 +28,7 @@ module.exports = React.createClass({
     return (
       <ScrollView style={styles.content}>
         {
-          this.state.dataSource ? <Item dataSource={this.state.dataSource}></Item> : <Text style={styles.loading}>Loading...</Text>
+          this.state.dataSource ? <Item dataSource={this.state.dataSource} navigator={this.props.navigator}></Item> : <Loading />
         }
       </ScrollView>
     )
@@ -38,12 +39,5 @@ var styles = StyleSheet.create({
   content: {
     paddingLeft: 5,
     paddingRight: 5
-  },
-  loading: {
-    flex: 1,
-    fontSize: 20,
-    color: "#999",
-    marginTop: 200,
-    textAlign: "center"
   }
 })

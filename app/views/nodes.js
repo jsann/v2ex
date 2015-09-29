@@ -1,5 +1,7 @@
 var React = require("react-native");
 
+var Loading = require("./common/loading.js");
+
 var {
   View,
   ScrollView,
@@ -30,7 +32,7 @@ module.exports = React.createClass({
             this.state.allNodes.map(function(v, i) {
               return <Text style={styles.node} key={i}>{v.title}</Text>
             })
-          ) : <Text style={styles.loading}>Loading...</Text>
+          ) : <Loading />
         }
         </View>
       </ScrollView>
@@ -41,13 +43,6 @@ module.exports = React.createClass({
 var styles = StyleSheet.create({
   content: {
     padding: 5
-  },
-  loading: {
-    flex: 1,
-    fontSize: 20,
-    color: "#999",
-    marginTop: 200,
-    textAlign: "center"
   },
   nodes: {
     flexWrap: "wrap",
